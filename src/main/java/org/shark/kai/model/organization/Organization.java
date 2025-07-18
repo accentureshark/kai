@@ -1,4 +1,4 @@
-package org.shark.kai.organization;
+package org.shark.kai.model.organization;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.shark.kai.person.LegalPerson;
+import org.shark.kai.model.person.LegalPerson;
 
 
 import java.util.UUID;

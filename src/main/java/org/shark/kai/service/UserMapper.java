@@ -1,12 +1,12 @@
 package org.shark.kai.service;
 
 import org.shark.kai.dto.*;
-import org.shark.kai.organization.Area;
-import org.shark.kai.organization.AreaAssignment;
-import org.shark.kai.organization.Organization;
-import org.shark.kai.person.NaturalPerson;
-import org.shark.kai.person.Role;
-import org.shark.kai.user.User;
+import org.shark.kai.model.organization.Area;
+import org.shark.kai.model.organization.AreaAssignment;
+import org.shark.kai.model.organization.Organization;
+import org.shark.kai.model.person.NaturalPerson;
+import org.shark.kai.model.person.Role;
+import org.shark.kai.model.user.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

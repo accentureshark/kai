@@ -1,4 +1,4 @@
-package org.shark.kai.organization;
+package org.shark.kai.model.organization;
 
 
 import jakarta.persistence.*;
@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.shark.kai.person.NaturalPerson;
+import org.shark.kai.model.person.NaturalPerson;
 
 
 import java.time.LocalDate;

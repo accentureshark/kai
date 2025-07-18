@@ -3,7 +3,7 @@ package org.shark.kai.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.shark.kai.dto.OrganizationDTO;
-import org.shark.kai.organization.Organization;
+import org.shark.kai.model.organization.Organization;
 import org.shark.kai.repository.OrganizationRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

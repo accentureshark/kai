@@ -1,21 +1,22 @@
-package org.shark.kai.organization;
+package org.shark.kai.model.person;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.shark.kai.model.organization.Area;
 
-import java.util.List;
+
 import java.util.UUID;
 
 @Entity
-@Table(name = "area", schema = "admin")
+@Table(name = "\"role\"", schema = "admin")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Area {
+public class Role {
 
     @Id
     @GeneratedValue
@@ -25,11 +26,6 @@ public class Area {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
-
-    @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AreaAssignment> assignments;
-
-
+    @JoinColumn(name = "area_id")
+    private Area area;
 }

@@ -1,12 +1,11 @@
-package org.shark.kai.person;
+package org.shark.kai.model.person;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
-import org.shark.kai.common.Person;
-import org.shark.kai.organization.AreaAssignment;
+import org.shark.kai.model.organization.AreaAssignment;
 
 import java.time.LocalDate;
 import java.util.List;

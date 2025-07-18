@@ -1,4 +1,4 @@
-package org.shark.kai.common;
+package org.shark.kai.model.person;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

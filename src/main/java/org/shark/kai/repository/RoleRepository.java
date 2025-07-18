@@ -1,6 +1,6 @@
 package org.shark.kai.repository;
 
-import org.shark.kai.person.Role;
+import org.shark.kai.model.person.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
