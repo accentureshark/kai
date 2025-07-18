@@ -12,7 +12,7 @@ import org.shark.kai.person.Role;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user", schema = "admin")
+@Table(name = "\"user\"", schema = "admin")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
