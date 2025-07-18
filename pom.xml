@@ -22,10 +22,7 @@
         <aws.sdk.version>2.29.43</aws.sdk.version>
         <spring-boot.version>3.4.1</spring-boot.version>
         <micrometer.version>1.14.2</micrometer.version>
-        <docker.registry>fabianaguero</docker.registry>
-        <docker.username>fabianaguero</docker.username>
-        <docker.password>dckr_pat_oQ8IqIDO6QjVWYVlbeo8DgZQcJU</docker.password>
-        <langchain4j.version>1.0.1</langchain4j.version>
+         <langchain4j.version>1.0.1</langchain4j.version>
         <langchain4j-ollama.version>1.0.1-beta6</langchain4j-ollama.version>
         <langchain4j-pgvector.version>1.0.1-beta6</langchain4j-pgvector.version>
         <langchain4j-embeddings.version>1.0.1-beta6</langchain4j-embeddings.version>
