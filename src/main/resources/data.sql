@@ -1,12 +1,14 @@
--- Insert sample data (only if tables are empty)
--- Organizations (Legal Persons)
+-- Sample data for KAI database (PostgreSQL version)
+-- This script should be run after the application has started and created the tables
+
+-- Insert Organizations (Legal Persons)
 INSERT INTO admin.person (id, type, display_name, business_name, tax_id, registration_number) 
 VALUES 
     (uuid_generate_v4(), 'LEGAL', 'Accenture', 'Accenture PLC', '123456789', 'REG001'),
     (uuid_generate_v4(), 'LEGAL', 'Tech Solutions Inc', 'Tech Solutions Inc', '987654321', 'REG002')
 ON CONFLICT (id) DO NOTHING;
 
--- Natural Persons
+-- Insert Natural Persons
 INSERT INTO admin.person (id, type, display_name, first_name, last_name, national_id, birth_date) 
 VALUES 
     (uuid_generate_v4(), 'NATURAL', 'John Doe', 'John', 'Doe', '12345678A', '1990-01-15'),
@@ -14,17 +16,10 @@ VALUES
     (uuid_generate_v4(), 'NATURAL', 'Carlos Rodriguez', 'Carlos', 'Rodriguez', '11223344C', '1988-07-10')
 ON CONFLICT (id) DO NOTHING;
 
--- Get IDs for relationships (using a more robust approach)
+-- Insert Areas
 WITH org_data AS (
     SELECT id as org_id FROM admin.person WHERE business_name = 'Accenture' LIMIT 1
-),
-person_data AS (
-    SELECT 
-        (SELECT id FROM admin.person WHERE first_name = 'John' AND last_name = 'Doe' LIMIT 1) as john_id,
-        (SELECT id FROM admin.person WHERE first_name = 'Jane' AND last_name = 'Smith' LIMIT 1) as jane_id,
-        (SELECT id FROM admin.person WHERE first_name = 'Carlos' AND last_name = 'Rodriguez' LIMIT 1) as carlos_id
 )
--- Areas
 INSERT INTO admin.area (id, name, organization_id)
 SELECT 
     uuid_generate_v4(), 'Technology', org_data.org_id
@@ -39,13 +34,13 @@ SELECT
 FROM org_data
 ON CONFLICT (id) DO NOTHING;
 
--- Roles
+-- Insert Roles
 WITH area_data AS (
     SELECT 
         (SELECT id FROM admin.area WHERE name = 'Technology' LIMIT 1) as tech_area_id,
         (SELECT id FROM admin.area WHERE name = 'Human Resources' LIMIT 1) as hr_area_id
 )
-INSERT INTO admin.role (id, name, area_id)
+INSERT INTO admin."role" (id, name, area_id)
 SELECT uuid_generate_v4(), 'Developer', area_data.tech_area_id FROM area_data
 UNION ALL
 SELECT uuid_generate_v4(), 'Tech Lead', area_data.tech_area_id FROM area_data
@@ -53,15 +48,15 @@ UNION ALL
 SELECT uuid_generate_v4(), 'HR Manager', area_data.hr_area_id FROM area_data
 ON CONFLICT (id) DO NOTHING;
 
--- Users
+-- Insert Users
 WITH person_role_data AS (
     SELECT 
         (SELECT id FROM admin.person WHERE first_name = 'John' AND last_name = 'Doe' LIMIT 1) as john_id,
         (SELECT id FROM admin.person WHERE first_name = 'Jane' AND last_name = 'Smith' LIMIT 1) as jane_id,
-        (SELECT id FROM admin.role WHERE name = 'Developer' LIMIT 1) as dev_role_id,
-        (SELECT id FROM admin.role WHERE name = 'HR Manager' LIMIT 1) as hr_role_id
+        (SELECT id FROM admin."role" WHERE name = 'Developer' LIMIT 1) as dev_role_id,
+        (SELECT id FROM admin."role" WHERE name = 'HR Manager' LIMIT 1) as hr_role_id
 )
-INSERT INTO admin.user (id, email, password, active, role_id, person_id)
+INSERT INTO admin."user" (id, email, password, active, role_id, person_id)
 SELECT 
     uuid_generate_v4(), 
     'john.doe@accenture.com', 
@@ -81,7 +76,7 @@ SELECT
 FROM person_role_data
 ON CONFLICT (email) DO NOTHING;
 
--- Area Assignments
+-- Insert Area Assignments
 WITH assignment_data AS (
     SELECT 
         (SELECT id FROM admin.area WHERE name = 'Technology' LIMIT 1) as tech_area_id,

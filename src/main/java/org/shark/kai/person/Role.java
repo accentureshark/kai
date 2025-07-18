@@ -11,7 +11,7 @@ import org.shark.kai.organization.Area;
 import java.util.UUID;
 
 @Entity
-@Table(name = "role", schema = "admin")
+@Table(name = "\"role\"", schema = "admin")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
