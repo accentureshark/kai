@@ -16,11 +16,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        hibernate.default_schema: admin
     defer-datasource-initialization: true
     
   sql:
     init:
-      mode: never
+      mode: always
 
 springdoc:
   api-docs:
